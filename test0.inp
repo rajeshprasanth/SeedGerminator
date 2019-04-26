@@ -1,0 +1,7 @@
+maxseeds : 69
+model : 4-hill
+AUC_lower_limit : 20
+AUC_upper_limit : 100
+fname_uniformity : uniformity0.dat
+fname_generic_t_calc : generic_t0.dat
+fname_germination_data : germination0.dat
