@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+#
+# Created on Sat Apr 20 22:16:10 IST 2019
+# Purpose :: Launcher for SeedCalculator
+#
+import sys
+import time
+import math
+import getpass,socket
+#
+class InputData:
+	def __init__ (self, title=str,maxseeds=int, model=str, AUC_lower_limit=int, AUC_upper_limit=int, fname_uniformity=str, fname_generic_t_calc=str, fname_germination_data=str, germination_data_x=[], germination_data_y=[],  uniformity_data_x=[], uniformity_data_y=[], generic_t_data_x=[], generic_t_data_y=[]):
+		
+		self.title = title
+		self.maxseeds = maxseeds
+		self.model = model
+		self.AUC_lower_limit = AUC_lower_limit
+		self.AUC_upper_limit = AUC_upper_limit
+		self.fname_uniformity = fname_uniformity
+		self.fname_generic_t_calc = fname_generic_t_calc
+		self.fname_germination_data = fname_germination_data
+		self.germination_data_x = germination_data_x
+		self.germination_data_y = germination_data_y
+		self.uniformity_data_x = uniformity_data_x
+		self.uniformity_data_y = uniformity_data_y
+		self.generic_t_data_x = generic_t_data_x
+		self.generic_t_data_y = generic_t_data_y
+		
+def ReadInputFile(filename = str):
+	try:
+    		ifile = open(filename, 'r')
+	except IOError:
+    		print "Could not read file:", filename
+    		sys.exit()
+	#-----------------------------------------------------------------
+	# Setting default values for some keywords
+	#-----------------------------------------------------------------
+	model = '4-hill'
+	AUC_lower_limit = 0
+	AUC_upper_limit = 0
+	with ifile:
+    		for line in ifile:
+    			if "title" in line:
+    				title = line.split(":")[1]
+    			if "maxseeds" in line:
+				maxseeds = line.split(":")[1]
+			if "model" in line:
+				model = line.split(":")[1]
+			if "AUC_lower_limit" in line:
+				AUC_lower_limit = line.split(":")[1]
+			if "AUC_upper_limit" in line:
+				AUC_upper_limit = line.split(":")[1]
+			if "fname_uniformity" in line:
+				fname_uniformity = line.split(":")[1]
+			if "fname_generic_t_calc" in line:
+				fname_generic_t_calc = line.split(":")[1]
+			if "fname_germination_data" in line:
+				fname_germination_data = line.split(":")[1]
+	#--------------------------------------------------------------------
+	# Open germination datafile
+	#--------------------------------------------------------------------
+	print title 
+	print maxseeds 
+	print model
+	print AUC_lower_limit
+	print AUC_upper_limit
+	print fname_uniformity 
+	print fname_generic_t_calc 
+	print fname_germination_data 
+	    				
+inputfile="test0.inp"
+ReadInputFile(inputfile)
